@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rio Fungi — Brand Sale Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+  :root {
+    --cream:#F7F3ED;--dark:#1A1A18;--forest:#2D4A3E;--moss:#4A7C5C;
+    --gold:#C8A96E;--warm-white:#FDFAF6;--light-moss:#E8F0EB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark)}
+
+  .slide{width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:60px 80px;position:relative;overflow:hidden;border-bottom:3px solid rgba(0,0,0,0.08)}
+  .slide-number{position:absolute;bottom:28px;right:48px;font-size:11px;font-weight:600;
+    letter-spacing:3px;text-transform:uppercase;opacity:0.3}
+  .wm{position:absolute;font-family:'Playfair Display',serif;font-size:220px;font-weight:900;
+    opacity:0.04;pointer-events:none;user-select:none;line-height:1}
+
+  /* ── COVER ── */
+  .s1{background:var(--dark);color:var(--warm-white);justify-content:flex-end;padding-bottom:80px}
+  .s1 .wm{color:var(--gold);opacity:0.07;top:-20px;right:-20px}
+  .eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+  .cover-title{font-family:'Playfair Display',serif;font-size:90px;font-weight:900;line-height:0.92;
+    letter-spacing:-3px;margin-bottom:12px}
+  .cover-sub{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);font-style:italic;margin-bottom:36px}
+  .cover-tag{font-size:15px;font-weight:300;max-width:480px;line-height:1.75;opacity:0.72;margin-bottom:48px}
+  .divider{width:56px;height:2px;background:var(--gold);margin-bottom:28px}
+  .meta{display:flex;gap:48px;flex-wrap:wrap}
+  .meta-item{display:flex;flex-direction:column;gap:4px}
+  .meta-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;opacity:0.45}
+  .meta-value{font-size:14px;font-weight:600;color:var(--gold)}
+
+  /* ── SECTION BASICS ── */
+  .s-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--moss);font-weight:700;margin-bottom:14px}
+  .s-title{font-family:'Playfair Display',serif;font-size:50px;font-weight:700;line-height:1.08;margin-bottom:18px}
+  .s-title em{font-style:italic;color:var(--moss)}
+  .s-intro{font-size:16px;line-height:1.8;max-width:640px;color:#444;margin-bottom:44px}
+
+  /* ── SLIDE 2 — MERCADO ── */
+  .s2{background:var(--warm-white)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .stat{background:var(--forest);color:var(--warm-white);padding:30px 26px;border-radius:3px;position:relative}
+  .stat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);border-radius:3px 0 0 3px}
+  .stat-n{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px}
+  .stat-l{font-size:13px;font-weight:500;opacity:0.85;line-height:1.45}
+  .stat-s{font-size:10px;opacity:0.45;margin-top:6px;font-style:italic}
+
+  /* ── SLIDE 3 — MARCA ── */
+  .s3{background:var(--forest);color:var(--warm-white)}
+  .s3 .s-label{color:var(--gold)}
+  .s3 .s-title{color:var(--warm-white)}
+  .s3 .s-title em{color:var(--gold)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .story{font-size:15px;line-height:1.85;opacity:0.88}
+  .pillars{display:flex;flex-direction:column;gap:18px}
+  .pillar{display:flex;gap:14px;padding:18px;background:rgba(255,255,255,0.06);
+    border-radius:3px;border-left:3px solid var(--gold)}
+  .p-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+  .p-title{font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+  .p-text{font-size:12px;opacity:0.78;line-height:1.5}
+
+  /* ── SLIDE 4 — PRODUCTOS ── */
+  .s4{background:var(--cream)}
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  .prod{background:var(--warm-white);border:1px solid rgba(0,0,0,0.08);padding:30px 22px;
+    border-radius:3px;position:relative}
+  .prod.hero{background:var(--dark);color:var(--warm-white);border-color:transparent}
+  .prod-badge{position:absolute;top:-10px;right:18px;background:var(--gold);color:var(--dark);
+    font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
+  .prod-icon{font-size:34px;margin-bottom:14px}
+  .prod-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;margin-bottom:8px}
+  .prod-desc{font-size:12px;line-height:1.6;opacity:0.68;margin-bottom:14px}
+  .prod-tag{font-size:11px;font-weight:600;color:var(--moss);background:var(--light-moss);
+    padding:5px 12px;border-radius:20px;display:inline-block}
+  .prod.hero .prod-tag{color:var(--gold);background:rgba(200,169,110,0.15)}
+  .supply{margin-top:24px;padding:18px 22px;background:var(--light-moss);border-radius:3px;
+    border-left:3px solid var(--moss);font-size:13px;color:#444}
+
+  /* ── SLIDE 5 — ACTIVOS ── */
+  .s5{background:var(--warm-white)}
+  .assets{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+  .asset{display:flex;align-items:center;gap:14px;padding:18px 22px;
+    border:1px solid rgba(0,0,0,0.08);border-radius:3px;background:var(--cream)}
+  .a-icon{width:42px;height:42px;background:var(--forest);color:var(--gold);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
+  .a-name{font-weight:700;font-size:13px;margin-bottom:3px}
+  .a-detail{font-size:11px;color:#666;line-height:1.4}
+  .a-badge{font-size:11px;font-weight:700;color:var(--moss);background:var(--light-moss);
+    padding:3px 10px;border-radius:20px;white-space:nowrap}
+
+  /* ── SLIDE 6 — CREATIVO ── */
+  .s6{background:var(--dark);color:var(--warm-white)}
+  .s6 .s-label{color:var(--gold)}
+  .s6 .s-title{color:var(--warm-white)}
+  .s6 .s-title em{color:var(--gold)}
+  .creative{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start}
+  .bio{font-size:15px;line-height:1.88;opacity:0.85;margin-bottom:26px}
+  .quote{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--gold);
+    border-left:3px solid var(--gold);padding-left:18px;line-height:1.65}
+  .clients-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:10px}
+  .clients{display:flex;flex-direction:column;gap:9px}
+  .client{padding:12px 18px;background:rgba(255,255,255,0.06);border-radius:3px;font-size:12px;font-weight:500;
+    display:flex;align-items:center;gap:10px}
+
+  /* ── SLIDE 7 — COMUNIDAD ── */
+  .s7{background:var(--light-moss)}
+  .comm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:28px 0}
+  .cs{background:var(--warm-white);padding:26px 18px;border-radius:3px;text-align:center;border-bottom:3px solid var(--moss)}
+  .cs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--forest);line-height:1;margin-bottom:6px}
+  .cs-l{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:1px}
+  .insight{background:var(--forest);color:var(--warm-white);padding:26px 30px;border-radius:3px;
+    font-size:14px;line-height:1.8}
+
+  /* ── SLIDE 8 — DEAL ── */
+  .s8{background:var(--warm-white)}
+  .deal{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:start}
+  .deal-main{background:var(--forest);color:var(--warm-white);padding:38px;border-radius:3px}
+  .d-pl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0.75;margin-bottom:10px}
+  .d-price{font-family:'Playfair Display',serif;font-size:66px;font-weight:900;line-height:1;margin-bottom:4px}
+  .d-curr{font-size:13px;color:var(--gold);font-weight:600;letter-spacing:2px;margin-bottom:26px}
+  .d-il{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:12px}
+  .d-item{display:flex;gap:9px;margin-bottom:9px;font-size:12px;opacity:0.88;line-height:1.4;align-items:flex-start}
+  .d-check{color:var(--gold);flex-shrink:0}
+  .royalty{background:var(--cream);padding:30px;border-radius:3px;border:2px solid var(--gold)}
+  .r-badge{background:var(--gold);color:var(--dark);font-size:9px;font-weight:800;letter-spacing:2px;
+    text-transform:uppercase;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:14px}
+  .r-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:10px}
+  .r-pct{font-family:'Playfair Display',serif;font-size:70px;font-weight:900;color:var(--forest);line-height:1;margin-bottom:4px}
+  .r-desc{font-size:12px;color:#555;line-height:1.65;margin-bottom:18px}
+  .r-benefit{font-size:12px;background:var(--light-moss);color:var(--forest);padding:10px 13px;
+    border-radius:3px;font-weight:500;line-height:1.5;margin-bottom:14px}
+  .r-alts{padding:16px;background:rgba(0,0,0,0.04);border-radius:3px;font-size:12px;color:#444;line-height:1.8}
+  .r-alts-title{font-size:10px;font-weight:700;color:var(--forest);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+
+  /* ── SLIDE 9 — COMPRADOR ── */
+  .s9{background:var(--forest);color:var(--warm-white)}
+  .s9 .s-label{color:var(--gold)}
+  .s9 .s-title{color:var(--warm-white)}
+  .s9 .s-title em{color:var(--gold)}
+  .b-intro{font-size:15px;line-height:1.8;opacity:0.85;max-width:680px;margin-bottom:32px}
+  .buyers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .buyer{background:rgba(255,255,255,0.07);border-radius:3px;padding:26px 20px;border-top:3px solid var(--gold)}
+  .b-icon{font-size:30px;margin-bottom:12px}
+  .b-type{font-weight:700;font-size:11px;color:var(--gold);margin-bottom:7px;text-transform:uppercase;letter-spacing:1px}
+  .b-desc{font-size:12px;line-height:1.62;opacity:0.78}
+
+  /* ── SLIDE 10 — CIERRE ── */
+  .s10{background:var(--dark);color:var(--warm-white);align-items:center;text-align:center}
+  .s10 .wm{bottom:-50px;left:50%;transform:translateX(-50%);color:var(--gold);opacity:0.06}
+  .close-title{font-family:'Playfair Display',serif;font-size:62px;font-weight:900;line-height:1.05;margin-bottom:14px;max-width:680px}
+  .close-sub{font-family:'Playfair Display',serif;font-size:21px;font-style:italic;color:var(--gold);margin-bottom:46px}
+  .close-div{width:48px;height:1px;background:var(--gold);margin:0 auto 36px}
+  .contacts{display:flex;gap:36px;justify-content:center;flex-wrap:wrap}
+  .c-item{display:flex;flex-direction:column;align-items:center;gap:5px}
+  .c-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;opacity:0.45}
+  .c-value{font-size:15px;font-weight:600;color:var(--gold)}
+  .footer-conf{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;opacity:0.25;white-space:nowrap}
+
+  @media(max-width:768px){
+    .slide{padding:36px 24px}
+    .cover-title{font-size:54px}
+    .stats,.products,.buyers,.comm-stats,.two,.creative,.deal,.assets{grid-template-columns:1fr}
+    .s-title{font-size:34px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ S1 — PORTADA ══ -->
+<section class="slide s1">
+  <div class="wm">RF</div>
+  <div class="eyebrow">Oportunidad de Adquisición de Marca — Confidencial</div>
+  <div class="cover-title">RIO<br>FUNGI</div>
+  <div class="cover-sub">Adaptógenos de autor para el mercado latinoamericano</div>
+  <div class="cover-tag">Una marca de bienestar construida con dirección de arte de primer nivel internacional, portafolio de productos diferenciados y comunidad activa — lista para escalar.</div>
+  <div class="divider"></div>
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">Precio de Venta</span><span class="meta-value">USD 150.000</span></div>
+    <div class="meta-item"><span class="meta-label">Modelo</span><span class="meta-value">Adquisición Total + Royalty 5%</span></div>
+    <div class="meta-item"><span class="meta-label">Categoría</span><span class="meta-value">Adaptógenos / Wellness</span></div>
+    <div class="meta-item"><span class="meta-label">Mercado</span><span class="meta-value">Argentina → Latam → Global</span></div>
+  </div>
+  <div class="slide-number">01 / 10</div>
+</section>
+
+<!-- ══ S2 — MERCADO ══ -->
+<section class="slide s2">
+  <div class="s-label">El mercado global</div>
+  <div class="s-title">El boom de los hongos<br><em>está apenas comenzando</em></div>
+  <div class="s-intro">El mercado global de hongos funcionales y adaptógenos es uno de los segmentos de mayor crecimiento en la industria del bienestar. Rio Fungi fue diseñada para capturar exactamente esta ola — con branding de nivel internacional, productos diferenciados y comunidad real.</div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">$62B</div>
+      <div class="stat-l">Valor proyectado del mercado global de hongos funcionales para 2032</div>
+      <div class="stat-s">CAGR 9.14% — Grand View Research 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">9.14%</div>
+      <div class="stat-l">Tasa de crecimiento anual compuesto — uno de los segmentos de mayor expansión en wellness a nivel global</div>
+      <div class="stat-s">Mercado en aceleración sostenida 2025–2032</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">72%</div>
+      <div class="stat-l">De consumidores que prefieren ingredientes naturales sobre farmacéuticos convencionales</div>
+      <div class="stat-s">El segmento exacto al que Rio Fungi apunta</div>
+    </div>
+  </div>
+  <div class="slide-number">02 / 10</div>
+</section>
+
+<!-- ══ S3 — LA MARCA ══ -->
+<section class="slide s3">
+  <div class="s-label">Identidad de marca</div>
+  <div class="s-title">Una marca construida<br><em>para perdurar</em></div>
+  <div class="two">
+    <p class="story">Rio Fungi nació de la convicción de que los adaptógenos merecen el mismo nivel de sofisticación visual y narrativa que las grandes marcas de bienestar internacionales.<br><br>Diseñada desde cero con rigor creativo en cada detalle, la marca integra una identidad visual de autor, una voz editorial clara y productos formulados para destacar en un mercado en plena expansión.<br><br>No es una marca genérica de suplementos. Es un activo de comunicación que convierte el bienestar en deseo. Eso es lo que la hace valiosa más allá de sus productos.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="p-icon">🌿</div><div><div class="p-title">Naturaleza con rigor</div><div class="p-text">Productos formulados con extractos de calidad real, sin rellenos. La ciencia detrás de cada cápsula y extracto.</div></div></div>
+      <div class="pillar"><div class="p-icon">🎨</div><div><div class="p-title">Diseño de autor</div><div class="p-text">Identidad visual creada por un director de arte con trayectoria internacional en cine, publicidad y TV.</div></div></div>
+      <div class="pillar"><div class="p-icon">🌎</div><div><div class="p-title">Escala Latam</div><div class="p-text">Construida en Argentina con visión regional. El español como ventaja competitiva en un mercado sub-atendido.</div></div></div>
+    </div>
+  </div>
+  <div class="slide-number">03 / 10</div>
+</section>
+
+<!-- ══ S4 — PRODUCTOS ══ -->
+<section class="slide s4">
+  <div class="s-label">Portafolio de productos</div>
+  <div class="s-title">Formulados para<br><em>convertir y fidelizar</em></div>
+  <div class="products">
+    <div class="prod hero">
+      <div class="prod-badge">⭐ Hero Product</div>
+      <div class="prod-icon">💊</div>
+      <div class="prod-name">Cápsulas 500mg</div>
+      <div class="prod-desc">La dosis diaria mínima efectiva en una sola cápsula. Diferenciador clave frente a competidores que requieren 3–5 cápsulas de 250mg para alcanzar la misma dosis. Menos píldoras = mejor experiencia de usuario = mayor retención.</div>
+      <div class="prod-tag">1 cápsula = dosis completa</div>
+    </div>
+    <div class="prod">
+      <div class="prod-icon">🧪</div>
+      <div class="prod-name">Extractos 30ml</div>
+      <div class="prod-desc">Extractos líquidos concentrados en presentación compacta. Mayor biodisponibilidad, onboarding rápido para nuevos usuarios y alta tasa de recompra mensual.</div>
+      <div class="prod-tag">Alta absorción</div>
+    </div>
+    <div class="prod">
+      <div class="prod-icon">🧴</div>
+      <div class="prod-name">Extractos 45ml</div>
+      <div class="prod-desc">Versión premium para usuarios recurrentes. Mejor precio por ml, mayor margen por unidad y mejor LTV por cliente fidelizado.</div>
+      <div class="prod-tag">Formato fidelización</div>
+    </div>
+  </div>
+  <div class="supply"><strong style="color:var(--forest)">🔗 Cadena de suministro incluida:</strong><span style="margin-left:8px">Red de proveedores especialistas en extractos y polvo de hongos ya establecida. El comprador hereda la supply chain completa desde el día uno, sin tiempo de búsqueda ni riesgo de validación.</span></div>
+  <div class="slide-number">04 / 10</div>
+</section>
+
+<!-- ══ S5 — ACTIVOS ══ -->
+<section class="slide s5">
+  <div class="s-label">Activos transferidos</div>
+  <div class="s-title">Un ecosistema completo,<br><em>listo para operar</em></div>
+  <div class="assets">
+    <div class="asset"><div class="a-icon">®</div><div style="flex:1"><div class="a-name">Marca Registrada</div><div class="a-detail">Derechos de marca y denominación registrados en Argentina</div></div><div class="a-badge">Legal</div></div>
+    <div class="asset"><div class="a-icon">©</div><div style="flex:1"><div class="a-name">Derechos de Autor</div><div class="a-detail">Toda la propiedad intelectual sobre sistema visual y contenidos</div></div><div class="a-badge">Legal</div></div>
+    <div class="asset"><div class="a-icon">🌐</div><div style="flex:1"><div class="a-name">Dominios + Web E-commerce</div><div class="a-detail">Dominio(s) registrados y página web funcional con tienda online</div></div><div class="a-badge">Digital</div></div>
+    <div class="asset"><div class="a-icon">📱</div><div style="flex:1"><div class="a-name">Instagram 12.500 seguidores</div><div class="a-detail">Comunidad activa y orgánica construida en el nicho wellness</div></div><div class="a-badge">Comunidad</div></div>
+    <div class="asset"><div class="a-icon">🎯</div><div style="flex:1"><div class="a-name">Sistemas de Marketing</div><div class="a-detail">Embudos, contenidos, estrategias y activos de comunicación operativos</div></div><div class="a-badge">Marketing</div></div>
+    <div class="asset"><div class="a-icon">📦</div><div style="flex:1"><div class="a-name">Packaging + Archivos</div><div class="a-detail">Sistema de packaging completo con archivos de producción listos para imprimir</div></div><div class="a-badge">Producción</div></div>
+    <div class="asset"><div class="a-icon">🎬</div><div style="flex:1"><div class="a-name">Assets Audiovisuales</div><div class="a-detail">Video, motion graphics, fotografía y contenido de marca terminado</div></div><div class="a-badge">Creativo</div></div>
+    <div class="asset"><div class="a-icon">🤝</div><div style="flex:1"><div class="a-name">Red de Proveedores</div><div class="a-detail">Contactos y relaciones validadas con especialistas en extractos y cápsulas</div></div><div class="a-badge">Supply Chain</div></div>
+  </div>
+  <div class="slide-number">05 / 10</div>
+</section>
+
+<!-- ══ S6 — DIRECTOR DE ARTE ══ -->
+<section class="slide s6">
+  <div class="s-label">El diferencial creativo</div>
+  <div class="s-title">Dirección de arte<br><em>de clase internacional</em></div>
+  <div class="creative">
+    <div>
+      <p class="bio">Rio Fungi fue creada y dirigida creativamente por <strong>@emma_mel_</strong>, director de arte y diseñador audiovisual con una trayectoria excepcional en publicidad, cine y televisión a nivel nacional e internacional.<br><br>La marca lleva incorporado el capital creativo de un profesional cuyo trabajo habitual cotiza en proyectos de Hollywood y campañas para marcas de primer nivel global.<br><br>Para un comprador, esto significa adquirir una identidad visual que normalmente requeriría una inversión de múltiples ceros y meses de desarrollo con una agencia boutique internacional. Está pagado, terminado y transferible.</p>
+      <div class="quote">"Rio Fungi no tiene el look de una startup. Tiene el look de una marca que ya ganó."</div>
+    </div>
+    <div>
+      <div class="clients-label">Trayectoria del Director de Arte</div>
+      <div class="clients">
+        <div class="client">🎬 Proyectos cinematográficos de Hollywood</div>
+        <div class="client">🎵 Universal Music — campañas internacionales</div>
+        <div class="client">🏰 Disney Channel — proyectos creativos</div>
+        <div class="client">🧪 Laboratorios farmacéuticos — identidades de marca</div>
+        <div class="client">📺 Publicidad para TV — Argentina y Latam</div>
+        <div class="client">🏆 Agencias de publicidad de primera línea</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">06 / 10</div>
+</section>
+
+<!-- ══ S7 — COMUNIDAD ══ -->
+<section class="slide s7">
+  <div class="s-label">Tracción y comunidad</div>
+  <div class="s-title">Una base real,<br><em>no un punto de partida cero</em></div>
+  <div class="comm-stats">
+    <div class="cs"><div class="cs-n">12.5K</div><div class="cs-l">Seguidores Instagram</div></div>
+    <div class="cs"><div class="cs-n">7</div><div class="cs-l">Meses de construcción</div></div>
+    <div class="cs"><div class="cs-n">8+</div><div class="cs-l">Profesionales involucrados</div></div>
+    <div class="cs"><div class="cs-n">3</div><div class="cs-l">SKUs activos</div></div>
+  </div>
+  <div class="insight"><strong>¿Por qué importa tener clientes recurrentes?</strong><br><br>En el negocio de suplementos, la recompra es el indicador más crítico de salud comercial. Un cliente que vuelve cada mes a comprar adaptógenos representa un LTV (valor de vida) de 12x o más el valor de su primera compra. Rio Fungi ya tiene ese ciclo iniciado: el comprador no arranca desde cero, sino desde una base con comportamiento de consumo probado y comunidad con identidad propia.</div>
+  <div class="slide-number">07 / 10</div>
+</section>
+
+<!-- ══ S8 — DEAL ══ -->
+<section class="slide s8">
+  <div class="s-label">La operación</div>
+  <div class="s-title">Estructura de venta<br><em>clara y negociable</em></div>
+  <div class="deal">
+    <div class="deal-main">
+      <div class="d-pl">Precio de adquisición total</div>
+      <div class="d-price">$150K</div>
+      <div class="d-curr">USD — Dólares estadounidenses</div>
+      <div class="d-il">La adquisición incluye</div>
+      <div class="d-item"><span class="d-check">✦</span> Marca registrada + derechos de autor completos</div>
+      <div class="d-item"><span class="d-check">✦</span> Dominio(s) web + página e-commerce operativa</div>
+      <div class="d-item"><span class="d-check">✦</span> Instagram con 12.500 seguidores orgánicos</div>
+      <div class="d-item"><span class="d-check">✦</span> Todas las redes sociales y activos digitales</div>
+      <div class="d-item"><span class="d-check">✦</span> Sistema de marketing completo y activo</div>
+      <div class="d-item"><span class="d-check">✦</span> Packaging + archivos de producción</div>
+      <div class="d-item"><span class="d-check">✦</span> Portfolio de productos + red de proveedores</div>
+      <div class="d-item"><span class="d-check">✦</span> Todos los assets audiovisuales y creativos</div>
+      <div class="d-item"><span class="d-check">✦</span> Base de clientes recurrentes</div>
+      <div class="d-item"><span class="d-check">✦</span> Período de transición y soporte del fundador</div>
+    </div>
+    <div>
+      <div class="royalty">
+        <div class="r-badge">Condición del Fundador</div>
+        <div class="r-title">Royalty mensual post-venta</div>
+        <div class="r-pct">5%</div>
+        <div class="r-desc">El fundador solicita mantener un 5% de las ganancias mensuales netas como reconocimiento al capital creativo incorporado en la marca. Plazo y condiciones a negociar.</div>
+        <div class="r-benefit">💡 Para el comprador, esto es una ventaja real: alinea los intereses del creador con el éxito futuro de la marca. El fundador tiene incentivo directo para que la marca crezca.</div>
+        <div class="r-alts">
+          <div class="r-alts-title">Alternativas negociables</div>
+          • Precio fijo reducido sin royalty<br>
+          • Royalty por tiempo limitado (3–5 años)<br>
+          • Pago diferido en cuotas + royalty<br>
+          • Acuerdo de consultoría creativa continua
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">08 / 10</div>
+</section>
+
+<!-- ══ S9 — COMPRADOR IDEAL ══ -->
+<section class="slide s9">
+  <div class="s-label">Perfil del comprador ideal</div>
+  <div class="s-title">¿Para quién es<br><em>esta oportunidad?</em></div>
+  <p class="b-intro">Rio Fungi es ideal para quien quiere entrar al mercado de wellness latinoamericano con una marca ya construida, diferenciada y con comunidad activa — sin los 7 meses y el equipo de 8+ profesionales especializados que requirió crearla.</p>
+  <div class="buyers">
+    <div class="buyer"><div class="b-icon">🏢</div><div class="b-type">Empresa de suplementos o wellness</div><div class="b-desc">Laboratorios, distribuidores o marcas de salud que quieren expandir su portfolio hacia hongos funcionales sin construir una marca desde cero.</div></div>
+    <div class="buyer"><div class="b-icon">📈</div><div class="b-type">Inversor o holding de marcas DTC</div><div class="b-desc">Fondos o grupos que adquieren marcas digitales con comunidad establecida, las escalan con paid media y las expanden geográficamente para maximizar el retorno.</div></div>
+    <div class="buyer"><div class="b-icon">🌎</div><div class="b-type">Marca internacional expandiéndose a Latam</div><div class="b-desc">Empresa de wellness de EE.UU., Europa o Asia que busca una puerta de entrada a Latinoamérica con identidad local, comunidad real y operación lista para activar.</div></div>
+  </div>
+  <div class="slide-number">09 / 10</div>
+</section>
+
+<!-- ══ S10 — CIERRE ══ -->
+<section class="slide s10">
+  <div class="wm">RF</div>
+  <div class="eyebrow">Una marca lista para el próximo nivel</div>
+  <div class="close-title">El momento de<br>Rio Fungi es ahora.</div>
+  <div class="close-sub">El mercado crece. La marca está lista. ¿Lo estás tú?</div>
+  <div class="close-div"></div>
+  <div class="contacts">
+    <div class="c-item"><span class="c-label">Director de Arte / Fundador</span><span class="c-value">@emma_mel_</span></div>
+    <div class="c-item"><span class="c-label">Marca</span><span class="c-value">Rio Fungi</span></div>
+    <div class="c-item"><span class="c-label">Precio de Venta</span><span class="c-value">USD 150.000</span></div>
+    <div class="c-item"><span class="c-label">Modelo</span><span class="c-value">Adquisición Total + Royalty 5%</span></div>
+  </div>
+  <div class="footer-conf">Documento confidencial — Solo para potenciales adquirientes — Rio Fungi 2025</div>
+  <div class="slide-number">10 / 10</div>
+</section>
+
+</body>
+</html>
